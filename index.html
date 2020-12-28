@@ -8,6 +8,7 @@
 	<!-- <script src='js/OBJLoader.js'></script>
 	<script src='js/MTLLoader.js'></script> -->
 	<script src='js/GLTFLoader.js'></script>
+	<!-- <script type="module" src='js/FBXLoader.js'></script> -->
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
 	<script src="jsartoolkit5/artoolkit.api.js"></script>
@@ -202,7 +203,7 @@ function initialize()
 	smoothedRoot.add( floorMesh );
 
 	var threeGLTFLoader = new THREE.GLTFLoader();
-	threeGLTFLoader.load("./models/Soldier.glb", function (gltf) {
+	threeGLTFLoader.load("./models/scene.glb", function (gltf) {
 		model = gltf.scene;
 		gltf.scene.scale.set(2,2,2)
 		smoothedRoot.add( model );
@@ -224,11 +225,8 @@ function initialize()
 		mixer = new THREE.AnimationMixer( model );
 
 		idleAction = mixer.clipAction( animations[ 0 ] );
-		xxxAction = mixer.clipAction( animations[ 2 ] );
-		walkAction = mixer.clipAction( animations[ 3 ] );
-		runAction = mixer.clipAction( animations[ 1 ] );
 
-		actions = [ runAction ];
+		actions = [ idleAction ];
 
 		actions.forEach( function ( action ) {
 
